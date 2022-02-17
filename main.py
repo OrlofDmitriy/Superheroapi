@@ -15,4 +15,22 @@ def get_hero_intelligence(name):
     res = requests.get(url)
 
     intelligence = res.json()['intelligence']
+    intelligence = int(intelligence)
+
     return intelligence
+
+
+def comparison_intellects_of_heroes(heroes):
+    intelligence_dict = {}
+
+    for hero in heroes:
+        hero_intelligence = get_hero_intelligence(hero)
+        intelligence_dict[hero] = hero_intelligence
+
+    smartest_hero = max(intelligence_dict, key=intelligence_dict.get)
+
+    print(f'Самый умный - {smartest_hero}')
+
+
+heroes = ['Hulk', 'Captain America', 'Thanos']
+comparison_intellects_of_heroes(heroes)
